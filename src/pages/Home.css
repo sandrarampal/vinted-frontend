@@ -1,0 +1,23 @@
+.banner {
+  width: 100vw;
+  height: 400px;
+}
+
+.banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.banner-panel {
+  position: relative;
+  border: solid red 2px;
+  bottom: 340px;
+  right: 330px;
+  background-color: white;
+  width: 30%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
