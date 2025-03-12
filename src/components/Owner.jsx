@@ -1,8 +1,10 @@
-const Owner = () => {
+const Owner = ({ owner }) => {
   return (
     <div className="owner">
-      <img src="" alt="" />
-      <p></p>
+      {owner.account.avatar && (
+        <img src={owner.account.avatar.secure_url} alt="" />
+      )}
+      <p>{owner.account.username}</p>
     </div>
   );
 };

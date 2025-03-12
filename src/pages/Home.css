@@ -21,3 +21,24 @@
   flex-direction: column;
   justify-content: space-around;
 }
+
+.owner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.owner img {
+  width: 20px;
+}
+
+.product-pic {
+  width: 24%;
+  height: 360px;
+}
+
+.product-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
