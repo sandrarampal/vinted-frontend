@@ -9,6 +9,7 @@ import Header from "./components/Header";
 function App() {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [search, setSearch] = useState("");
 
   const fetchData = async () => {
     const response = await axios.get(
@@ -27,9 +28,19 @@ function App() {
     <span>En cours de chargement... </span>
   ) : (
     <Router>
-      <Header />
+      <Header search={search} setSearch={setSearch} />
       <Routes>
-        <Route path="/" element={<Home data={data} setData={setData} />} />
+        <Route
+          path="/"
+          element={
+            <Home
+              data={data}
+              setData={setData}
+              search={search}
+              setSearch={setSearch}
+            />
+          }
+        />
         <Route
           path="/offer/:id"
           element={<Offer data={data} setData={setData} />}

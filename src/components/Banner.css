@@ -11,13 +11,30 @@
 
 .banner-panel {
   position: relative;
-  border: solid red 2px;
-  bottom: 340px;
-  right: 300px;
+  border: solid #d3d1d1 0.5px;
+  bottom: 85%;
+  right: 30.6%;
   background-color: white;
-  width: 300px;
+  padding: 25px;
+  width: 350px;
   height: 70%;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   justify-content: space-around;
+  border-radius: 10px;
+}
+
+.banner-panel button {
+  background-color: #09b0ba;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-family: Maison Neue Book, sans-serif;
+}
+
+h2 {
+  font-size: 34px;
+  font-weight: 200;
 }

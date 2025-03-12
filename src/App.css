@@ -3,6 +3,10 @@
 }
 
 .container {
-  max-width: 1204px;
+  max-width: 1224px;
   margin: 0 auto;
+}
+
+body {
+  font-family: Maison Neue Book, sans-serif;
 }

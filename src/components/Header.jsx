@@ -2,7 +2,12 @@ import logo from "../assets/img/logo-vinted.png";
 import "./Header.css";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ search, setSearch }) => {
+  const handleSearchChange = (event) => {
+    const value = event.target.value;
+    setSearch(value);
+  };
+
   return (
     <header className="container">
       <Link to="/">
@@ -11,7 +16,13 @@ const Header = () => {
         </div>
       </Link>
 
-      <input type="text" placeholder="Recherche des articles" />
+      <input
+        type="text"
+        placeholder="Recherche des articles"
+        onChange={handleSearchChange}
+        value={search}
+      />
+
       <div>
         <button>S'inscrire</button>
         <button>Connexion</button>

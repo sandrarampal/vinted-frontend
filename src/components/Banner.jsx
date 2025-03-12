@@ -10,7 +10,6 @@ const Banner = () => {
       <div className="banner-panel container">
         <h2>Prêts à faire du tri dans vos placards?</h2>
         <button>Commencez à vendre</button>
-        <Link to="/offer/777">Link</Link>
       </div>
     </div>
   );
