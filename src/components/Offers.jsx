@@ -12,7 +12,10 @@ const Offers = ({ data, setData, search, setSearch }) => {
           return (
             <div className="one-offer" key={offer._id}>
               <Owner owner={offer.owner} />
-              <Link to={`/offer/${offer._id}`}>
+              <Link
+                to={`/offer/${offer._id}`}
+                style={{ textDecoration: "none" }}
+              >
                 <Products offer={offer} />
               </Link>
             </div>

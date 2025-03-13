@@ -8,7 +8,7 @@ const Products = ({ offer }) => {
       <div className="product-pic">
         <img src={offer.product_pictures[0].secure_url} alt="" />
       </div>
-      <div>
+      <div className="product-infos">
         <p>{offer.product_price}</p>
         {offer.product_details.map((element, index) => {
           if (element.TAILLE) {

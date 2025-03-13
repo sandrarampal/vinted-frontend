@@ -1,6 +1,7 @@
 import logo from "../assets/img/logo-vinted.png";
 import "./Header.css";
 import { Link } from "react-router-dom";
+import { IoMdSearch } from "react-icons/io";
 
 const Header = ({ search, setSearch }) => {
   const handleSearchChange = (event) => {
@@ -15,19 +16,21 @@ const Header = ({ search, setSearch }) => {
           <img src={logo} alt="" />
         </div>
       </Link>
+      <div className="input-div">
+        <IoMdSearch className="search-icon" />
+        <input
+          type="text"
+          placeholder="Recherche des articles"
+          onChange={handleSearchChange}
+          value={search}
+        />
+      </div>
 
-      <input
-        type="text"
-        placeholder="Recherche des articles"
-        onChange={handleSearchChange}
-        value={search}
-      />
-
-      <div>
+      <div className="sign">
         <button>S'inscrire</button>
         <button>Connexion</button>
       </div>
-      <button>Vendre tes articles</button>
+      <button className="sell">Vendre tes articles</button>
     </header>
   );
 };
