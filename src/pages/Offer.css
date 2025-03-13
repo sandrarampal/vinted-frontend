@@ -1,0 +1,51 @@
+section {
+  display: flex;
+  justify-content: space-around;
+}
+
+.offer-main {
+  background-color: #eaedee;
+  height: calc(100vh - 70px);
+}
+
+.product-details {
+  margin-top: 40px;
+  padding: 30px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 35%;
+  height: 600px;
+}
+
+.product-details > p {
+  font-size: 24px;
+}
+
+.other-details > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.user p {
+  font-size: 16px;
+}
+
+.user img {
+  width: 30px;
+}
+
+.user {
+  display: flex;
+}
+
+.product-picture {
+  height: 600px;
+  margin-top: 40px;
+}
+
+.product-picture img {
+  height: 100%;
+  width: 100%;
+}

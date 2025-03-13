@@ -15,7 +15,7 @@ const Products = ({ offer }) => {
             return <p key={index}>{element.TAILLE}</p>;
           }
           if (element.MARQUE) {
-            return <p>{element.MARQUE}</p>;
+            return <p key={index}>{element.MARQUE}</p>;
           }
         })}
       </div>
