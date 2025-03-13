@@ -2,8 +2,16 @@ import logo from "../assets/img/logo-vinted.png";
 import "./Header.css";
 import { Link } from "react-router-dom";
 import { IoMdSearch } from "react-icons/io";
+import Cookies from "js-cookie";
 
-const Header = ({ search, setSearch, isConnected, setIsConnected }) => {
+const Header = ({
+  search,
+  setSearch,
+  isConnected,
+  setIsConnected,
+  token,
+  setToken,
+}) => {
   const handleSearchChange = (event) => {
     const value = event.target.value;
     setSearch(value);
@@ -26,18 +34,25 @@ const Header = ({ search, setSearch, isConnected, setIsConnected }) => {
           value={search}
         />
       </div>
-      {!isConnected ? (
+      {!token ? (
         <div className="sign">
           <Link to="/signup">
             <button>S'inscrire</button>
           </Link>
-          <button>Connexion</button>
+          <Link to="/login">
+            <button>Connexion</button>
+          </Link>
         </div>
       ) : (
         <div className="sign">
-          <Link to="/signup">
-            <button>Se déconnecter</button>
-          </Link>
+          <button
+            onClick={() => {
+              Cookies.remove("userToken");
+              setToken("");
+            }}
+          >
+            Se déconnecter
+          </button>
         </div>
       )}
 

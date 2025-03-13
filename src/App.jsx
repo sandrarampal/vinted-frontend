@@ -6,13 +6,14 @@ import Home from "./pages/Home";
 import Offer from "./pages/Offer";
 import Header from "./components/Header";
 import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+import Cookies from "js-cookie";
 
 function App() {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [isConnected, setIsConnected] = useState(false);
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState(Cookies.get("userToken"));
 
   const fetchData = async () => {
     const response = await axios.get(
@@ -34,8 +35,8 @@ function App() {
       <Header
         search={search}
         setSearch={setSearch}
-        isConnected={isConnected}
-        setIsConnected={setIsConnected}
+        token={token}
+        setToken={setToken}
       />
       <Routes>
         <Route
@@ -51,15 +52,12 @@ function App() {
         />
         <Route
           path="/signup"
-          element={
-            <Signup
-              setConnected={setIsConnected}
-              token={token}
-              setToken={setToken}
-            />
-          }
+          element={<Signup token={token} setToken={setToken} />}
         />
-        <Route path="/login" />
+        <Route
+          path="/login"
+          element={<Login token={token} setToken={setToken} />}
+        />
         <Route path="/offer/:id" element={<Offer />} />
       </Routes>
     </Router>

@@ -59,7 +59,7 @@ const Offer = () => {
             </div>
             <div>
               <p>MODES DE PAIEMENT</p>
-              <p>{data.product_details[4]["MODES DE PAIEMENT"]}</p>
+              <p></p>
             </div>
           </div>
           <div>
