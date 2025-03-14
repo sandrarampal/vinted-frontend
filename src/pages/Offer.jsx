@@ -33,37 +33,29 @@ const Offer = () => {
     <div className="offer-main">
       <section className="container">
         <div className="product-picture">
-          <img src={data.product_image.secure_url} alt="" />
+          <img src={data.product_image.secure_url} alt="photo du vêtement" />
         </div>
         <div className="product-details">
-          <p>{data.product_price} €</p>
+          <h3>{data.product_name}</h3>
+          <p>{data.product_price.toFixed(2)} €</p>
           <div className="other-details">
-            <div>
-              <p>MARQUE</p>
-              <p>{data.product_details[0].MARQUE}</p>
-            </div>
-            <div>
-              <p>ÉTAT</p>
-              <p>{data.product_details[1].ÉTAT}</p>
-            </div>
-            <div>
-              <p>COULEUR</p>
-              <p>{data.product_details[2].COULEUR}</p>
-            </div>
-            <div>
-              <p>EMPLACEMENT</p>
-              <p>{data.product_details[3].EMPLACEMENT}</p>
-            </div>
-            <div>
-              <p>MODES DE PAIEMENT</p>
-              <p></p>
-            </div>
+            {data.product_details.map((detail, index) => {
+              const key = Object.keys(detail);
+              return (
+                <div>
+                  <p>{key}</p>
+                  <p>{detail[key]}</p>
+                </div>
+              );
+            })}
           </div>
           <div>
-            <h3>{data.product_name}</h3>
             <p>{data.product_description}</p>
             <div className="user">
-              <img src={data.owner.account.avatar.secure_url} alt="" />
+              <img
+                src={data.owner.account.avatar.secure_url}
+                alt="avatar de l'utilisateur"
+              />
               <p>{data.owner.account.username}</p>
             </div>
             <button>Acheter</button>

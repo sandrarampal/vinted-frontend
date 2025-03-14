@@ -6,10 +6,13 @@ const Products = ({ offer }) => {
   return (
     <div>
       <div className="product-pic">
-        <img src={offer.product_pictures[0].secure_url} alt="" />
+        <img
+          src={offer.product_pictures[0].secure_url}
+          alt="photo du vêtement"
+        />
       </div>
       <div className="product-infos">
-        <p>{offer.product_price}</p>
+        <p>{offer.product_price.toFixed(2)} €</p>
         {offer.product_details.map((element, index) => {
           if (element.TAILLE) {
             return <p key={index}>{element.TAILLE}</p>;
