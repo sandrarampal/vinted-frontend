@@ -37,9 +37,6 @@ const Offer = () => {
         </div>
         <div className="product-details">
           <p>{data.product_price} €</p>
-          {data.product_details.map((detail, index) => {
-            console.log(index);
-          })}
           <div className="other-details">
             <div>
               <p>MARQUE</p>

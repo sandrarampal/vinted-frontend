@@ -48,7 +48,7 @@ const Header = ({
           <button
             onClick={() => {
               Cookies.remove("userToken");
-              setToken("");
+              setToken(null);
             }}
           >
             Se déconnecter

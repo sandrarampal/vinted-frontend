@@ -2,10 +2,13 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import "./Login.css";
+import { Link } from "react-router-dom";
 
 const Login = ({ token, setToken }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
@@ -33,15 +36,16 @@ const Login = ({ token, setToken }) => {
       Cookies.set("userToken", response.data.token);
       setToken(response.data.token);
       navigate("/");
-      console.log(response);
     } catch (error) {
-      console.log(error.message);
+      console.log(error.response);
+      setError("Mot de Passe ou Email incorrect");
     }
   };
 
   return (
-    <div>
+    <div className="login-page">
       <form onSubmit={handleSubmit}>
+        <h3>Se connecter</h3>
         <input
           type="email"
           name="email"
@@ -56,8 +60,11 @@ const Login = ({ token, setToken }) => {
           onChange={handlePasswordChange}
           value={password}
         />
+        {error && <p className="error">{error}</p>}
         <button>Se connecter</button>
-        <p>Pas encore de compte? Inscris-toi !</p>
+        <Link to="/signup" className="link-to">
+          <p>Pas encore de compte? Inscris-toi !</p>
+        </Link>
       </form>
     </div>
   );
