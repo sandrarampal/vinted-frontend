@@ -4,16 +4,15 @@ import "./Home.css";
 import Banner from "../components/Banner";
 import Offers from "../components/Offers";
 
-const Home = ({ data, setData, search, setSearch, priceDesc }) => {
+const Home = ({ data, search, priceDesc, values }) => {
   return (
     <div>
       <Banner />
       <Offers
         data={data}
-        setData={setData}
         search={search}
-        setSearch={setSearch}
         priceDesc={priceDesc}
+        values={values}
       />
     </div>
   );

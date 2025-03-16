@@ -5,14 +5,17 @@ const STEP = 1;
 const MIN = 0;
 const MAX = 500;
 
-const LabeledTwoThumbs: React.FC<{ rtl: boolean }> = ({ rtl }) => {
-  const [values, setValues] = React.useState([5, 200]);
+const LabeledTwoThumbs: React.FC<{
+  rtl: boolean;
+  values: [number, number];
+  setValues: Function;
+}> = ({ rtl, values, setValues }) => {
   return (
     <div
       style={{
-        display: "flex",
-        justifyContent: "center",
-        flexWrap: "wrap",
+        width: "100%",
+        position: "relative",
+        top: "55px",
       }}
     >
       <Range
@@ -28,6 +31,8 @@ const LabeledTwoThumbs: React.FC<{ rtl: boolean }> = ({ rtl }) => {
             key={props.key}
             style={{
               ...props.style,
+              position: "absolute",
+              top: "0px",
               height: "20px",
               width: "20px",
               borderRadius: "50%",
@@ -41,8 +46,9 @@ const LabeledTwoThumbs: React.FC<{ rtl: boolean }> = ({ rtl }) => {
             <div
               style={{
                 position: "absolute",
-                width: "35px",
-                top: "-27px",
+                height: "25px",
+                width: "40px",
+                top: "-28px",
                 color: "#fff",
                 textAlign: "center",
                 fontWeight: "bold",
@@ -55,13 +61,6 @@ const LabeledTwoThumbs: React.FC<{ rtl: boolean }> = ({ rtl }) => {
             >
               {values[index]} €
             </div>
-            <div
-              style={{
-                height: "16px",
-                width: "5px",
-                backgroundColor: "#2EB0BA",
-              }}
-            />
           </div>
         )}
         renderTrack={({ props, children }) => (

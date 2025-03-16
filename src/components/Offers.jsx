@@ -2,7 +2,7 @@ import Owner from "./Owner";
 import Products from "./Products";
 import { Link } from "react-router-dom";
 
-const Offers = ({ data, setData, search, setSearch, priceDesc }) => {
+const Offers = ({ data, search, priceDesc, values }) => {
   //   console.log(data);
   const newData = [...data.offers];
   if (priceDesc === false) {
@@ -15,24 +15,28 @@ const Offers = ({ data, setData, search, setSearch, priceDesc }) => {
     <section className="container">
       <div className="all-offers">
         {newData.map((offer, index) => {
-          //   console.log(offer.owner);
           if (
             offer.product_name.toLowerCase().includes(search.toLowerCase()) ||
             offer.product_details[0].MARQUE.toLowerCase().includes(
               search.toLowerCase()
             )
           ) {
-            return (
-              <div className="one-offer" key={offer._id}>
-                <Owner owner={offer.owner} />
-                <Link
-                  to={`/offer/${offer._id}`}
-                  style={{ textDecoration: "none" }}
-                >
-                  <Products offer={offer} />
-                </Link>
-              </div>
-            );
+            if (
+              offer.product_price <= values[1] &&
+              offer.product_price >= values[0]
+            ) {
+              return (
+                <div className="one-offer" key={offer._id}>
+                  <Owner owner={offer.owner} />
+                  <Link
+                    to={`/offer/${offer._id}`}
+                    style={{ textDecoration: "none" }}
+                  >
+                    <Products offer={offer} />
+                  </Link>
+                </div>
+              );
+            }
           }
         })}
       </div>

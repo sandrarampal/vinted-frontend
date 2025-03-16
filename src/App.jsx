@@ -8,6 +8,7 @@ import Header from "./components/Header";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Cookies from "js-cookie";
+import React from "react";
 
 function App() {
   const [data, setData] = useState({});
@@ -15,6 +16,7 @@ function App() {
   const [search, setSearch] = useState("");
   const [token, setToken] = useState(Cookies.get("userToken") || null);
   const [priceDesc, setPriceDesc] = useState(false);
+  const [values, setValues] = React.useState([5, 200]);
 
   const fetchData = async () => {
     const response = await axios.get(
@@ -39,6 +41,8 @@ function App() {
         token={token}
         setToken={setToken}
         setPriceDesc={setPriceDesc}
+        values={values}
+        setValues={setValues}
       />
       <Routes>
         <Route
@@ -46,10 +50,9 @@ function App() {
           element={
             <Home
               data={data}
-              setData={setData}
               search={search}
-              setSearch={setSearch}
               priceDesc={priceDesc}
+              values={values}
             />
           }
         />

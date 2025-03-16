@@ -5,8 +5,22 @@ import { IoMdSearch } from "react-icons/io";
 import Cookies from "js-cookie";
 import Toggle from "rsuite/Toggle";
 import "rsuite/dist/rsuite.min.css";
+import LabeledTwoThumbs from "./Range-Bar";
+import * as React from "react";
 
-const Header = ({ search, setSearch, token, setToken, setPriceDesc }) => {
+const STEP = 1;
+const MIN = 0;
+const MAX = 500;
+
+const Header = ({
+  search,
+  setSearch,
+  token,
+  setToken,
+  setPriceDesc,
+  values,
+  setValues,
+}) => {
   const handleSearchChange = (event) => {
     const value = event.target.value;
     setSearch(value);
@@ -32,13 +46,19 @@ const Header = ({ search, setSearch, token, setToken, setPriceDesc }) => {
         </div>
 
         <div>
-          <p>Trier par prix :</p>
+          <span>Trier par prix :</span>
           <Toggle
-            color="blue"
+            color="orange"
+            unCheckedChildren="⇡"
+            checkedChildren="⇣"
             onClick={() => {
               setPriceDesc((prev) => !prev);
             }}
           />
+          <div className="range">
+            <span>Prix entre :</span>
+            <LabeledTwoThumbs values={values} setValues={setValues} />
+          </div>
         </div>
       </div>
       {!token ? (
