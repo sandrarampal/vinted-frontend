@@ -14,6 +14,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [token, setToken] = useState(Cookies.get("userToken") || null);
+  const [priceDesc, setPriceDesc] = useState(false);
 
   const fetchData = async () => {
     const response = await axios.get(
@@ -37,6 +38,7 @@ function App() {
         setSearch={setSearch}
         token={token}
         setToken={setToken}
+        setPriceDesc={setPriceDesc}
       />
       <Routes>
         <Route
@@ -47,6 +49,7 @@ function App() {
               setData={setData}
               search={search}
               setSearch={setSearch}
+              priceDesc={priceDesc}
             />
           }
         />

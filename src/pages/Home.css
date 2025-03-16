@@ -50,3 +50,7 @@
   color: #999999;
   padding-bottom: 3px;
 }
+
+button:hover {
+  cursor: pointer;
+}
