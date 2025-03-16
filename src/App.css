@@ -10,3 +10,8 @@
 body {
   font-family: Maison Neue Book, sans-serif;
 }
+
+.loading {
+  display: flex;
+  justify-content: center;
+}

@@ -4,7 +4,8 @@ import "./Home.css";
 import Banner from "../components/Banner";
 import Offers from "../components/Offers";
 
-const Home = ({ data, search, priceDesc, values }) => {
+const Home = ({ data, search, priceDesc, values, setHomePage }) => {
+  setHomePage(true);
   return (
     <div>
       <Banner />
@@ -13,6 +14,7 @@ const Home = ({ data, search, priceDesc, values }) => {
         search={search}
         priceDesc={priceDesc}
         values={values}
+        setHomePage={setHomePage}
       />
     </div>
   );

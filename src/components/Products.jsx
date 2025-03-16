@@ -12,13 +12,21 @@ const Products = ({ offer }) => {
         />
       </div>
       <div className="product-infos">
-        <p>{offer.product_price.toFixed(2)} €</p>
+        <span>{offer.product_price.toFixed(2)} €</span>
         {offer.product_details.map((element, index) => {
           if (element.TAILLE) {
-            return <p key={index}>{element.TAILLE}</p>;
+            return (
+              <span key={index} className="product-detail">
+                {element.TAILLE}
+              </span>
+            );
           }
           if (element.MARQUE) {
-            return <p key={index}>{element.MARQUE}</p>;
+            return (
+              <span key={index} className="product-detail">
+                {element.MARQUE}
+              </span>
+            );
           }
         })}
       </div>

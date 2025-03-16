@@ -4,8 +4,9 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./Offer.css";
 import { BiLogIn } from "react-icons/bi";
+import { Commet } from "react-loading-indicators";
 
-const Offer = () => {
+const Offer = ({ setHomePage }) => {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
@@ -27,13 +28,27 @@ const Offer = () => {
     fetchData();
   }, []);
 
+  setHomePage(false);
+
   return isLoading ? (
-    <span>En cours de chargement... </span>
+    <Commet
+      color="#0dafba"
+      size="medium"
+      text=""
+      textColor=""
+      className="loading"
+    />
   ) : (
     <div className="offer-main">
       <section className="container">
         <div className="product-picture">
           <img src={data.product_image.secure_url} alt="photo du vêtement" />
+          {/* <div className="carrousel">
+            {data.product_pictures &&
+              data.product_pictures.map((picture, index) => {
+                return <img src={picture.secure_url} alt="" />;
+              })}
+          </div> */}
         </div>
         <div className="product-details">
           <h3>{data.product_name}</h3>
@@ -43,14 +58,14 @@ const Offer = () => {
               const key = Object.keys(detail);
               return (
                 <div>
-                  <p>{key}</p>
-                  <p>{detail[key]}</p>
+                  <span>{key}</span>
+                  <span>{detail[key]}</span>
                 </div>
               );
             })}
           </div>
           <div>
-            <p>{data.product_description}</p>
+            <p className="product-description">{data.product_description}</p>
             <div className="user">
               <img
                 src={data.owner.account.avatar.secure_url}

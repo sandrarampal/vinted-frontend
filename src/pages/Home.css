@@ -36,19 +36,19 @@
 }
 
 .product-infos {
-  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
-.product-infos p:first-child {
+.product-infos span:first-child {
+  padding-top: 10px;
   font-size: 14px;
   color: black;
-  padding-bottom: 4px;
 }
 
-.product-infos p:not(:first-child) {
+.product-detail {
   font-size: 12px;
   color: #999999;
-  padding-bottom: 3px;
 }
 
 button:hover {

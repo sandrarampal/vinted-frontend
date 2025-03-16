@@ -2,7 +2,7 @@ import Owner from "./Owner";
 import Products from "./Products";
 import { Link } from "react-router-dom";
 
-const Offers = ({ data, search, priceDesc, values }) => {
+const Offers = ({ data, search, priceDesc, values, setHomePage }) => {
   //   console.log(data);
   const newData = [...data.offers];
   if (priceDesc === false) {
@@ -31,6 +31,9 @@ const Offers = ({ data, search, priceDesc, values }) => {
                   <Link
                     to={`/offer/${offer._id}`}
                     style={{ textDecoration: "none" }}
+                    onClick={() => {
+                      setHomePage(false);
+                    }}
                   >
                     <Products offer={offer} />
                   </Link>

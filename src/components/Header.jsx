@@ -8,10 +8,6 @@ import "rsuite/dist/rsuite.min.css";
 import LabeledTwoThumbs from "./Range-Bar";
 import * as React from "react";
 
-const STEP = 1;
-const MIN = 0;
-const MAX = 500;
-
 const Header = ({
   search,
   setSearch,
@@ -20,6 +16,8 @@ const Header = ({
   setPriceDesc,
   values,
   setValues,
+  setHomePage,
+  homePage,
 }) => {
   const handleSearchChange = (event) => {
     const value = event.target.value;
@@ -27,47 +25,71 @@ const Header = ({
   };
 
   return (
-    <header className="container">
+    <header className={`container ${homePage ? "big-header" : "small-header"}`}>
       <Link to="/">
-        <div className="logo">
+        <div
+          className="logo"
+          onClick={() => {
+            setHomePage(true);
+          }}
+        >
           <img src={logo} alt="" />
         </div>
       </Link>
       <div className="input-div">
         <div>
-          <IoMdSearch className="search-icon" />
+          <IoMdSearch
+            className={`search-icon ${homePage ? "high-icon" : "center-icon"}`}
+          />
           <input
-            className="search-input"
+            className={`search-input ${
+              homePage ? "high-input" : "center-input"
+            }`}
             type="text"
             placeholder="Recherche des articles"
             onChange={handleSearchChange}
             value={search}
           />
         </div>
-
-        <div>
-          <span>Trier par prix :</span>
-          <Toggle
-            color="orange"
-            unCheckedChildren="⇡"
-            checkedChildren="⇣"
-            onClick={() => {
-              setPriceDesc((prev) => !prev);
-            }}
-          />
-          <div className="range">
-            <span>Prix entre :</span>
-            <LabeledTwoThumbs values={values} setValues={setValues} />
+        {homePage === true && (
+          <div>
+            <span>Trier par prix :</span>
+            <Toggle
+              color="orange"
+              unCheckedChildren="⇡"
+              checkedChildren="⇣"
+              onClick={() => {
+                setPriceDesc((prev) => !prev);
+              }}
+            />
+            <div className="range">
+              <span>Prix entre :</span>
+              <LabeledTwoThumbs values={values} setValues={setValues} />
+            </div>
           </div>
-        </div>
+        )}
       </div>
       {!token ? (
         <div className="sign">
           <Link to="/signup">
-            <button className="white-button">S'inscrire</button>
+            <button
+              className="white-button"
+              onClick={() => {
+                setHomePage(false);
+              }}
+            >
+              S'inscrire
+            </button>
           </Link>
           <Link to="/login">
-            <button className="white-button">Connexion</button>
+            <button
+              className="white-button"
+              onClick={() => {
+                setHomePage(false);
+              }}
+            >
+              Connexion
+            </button>
           </Link>
         </div>
       ) : (

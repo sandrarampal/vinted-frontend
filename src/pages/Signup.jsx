@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import "./Login.css";
 
-const Signup = ({ token, setToken }) => {
+const Signup = ({ setToken, setHomePage }) => {
+  setHomePage(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -46,6 +47,7 @@ const Signup = ({ token, setToken }) => {
       //   console.log(response);
       Cookies.set("userToken", response.data.token);
       setToken(response.data.token);
+      setHomePage(true);
       navigate("/");
     } catch (error) {
       console.log(error.response);

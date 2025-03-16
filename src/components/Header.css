@@ -4,9 +4,17 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 130px;
+
   /* border-bottom: grey solid 2px; */
   padding: 20px 0px;
+}
+
+.big-header {
+  height: 130px;
+}
+
+.small-header {
+  height: 80px;
 }
 
 .logo {
@@ -27,6 +35,10 @@ header {
   padding: 20px 35px;
   font-size: 16px;
   margin-bottom: 10px;
+}
+
+.center-input {
+  margin-top: 30px;
 }
 
 .search-input::placeholder {
@@ -67,6 +79,10 @@ header {
   color: #999999;
   font-size: 23px;
   opacity: 0.6;
+}
+
+.center-icon {
+  top: 61px;
 }
 
 .sign {
@@ -111,25 +127,4 @@ header {
 
 .range span {
   width: 30%;
-}
-
-.modal-root {
-  color: red;
-  /* Pour que la modal prenne tout l'écran : */
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.modal {
-  background-color: white;
-  width: 700px;
-  height: 400px;
-}
-
-header,
-footer {
-  color: green;
 }
