@@ -26,13 +26,13 @@ const Header = ({
 
   return (
     <header className={`container ${homePage ? "big-header" : "small-header"}`}>
-      <Link to="/">
-        <div
-          className="logo"
-          onClick={() => {
-            setHomePage(true);
-          }}
-        >
+      <Link
+        to="/"
+        onClick={() => {
+          setHomePage(true);
+        }}
+      >
+        <div className="logo">
           <img src={logo} alt="" />
         </div>
       </Link>
@@ -105,8 +105,9 @@ const Header = ({
           </button>
         </div>
       )}
-
-      <button className="sell">Vendre tes articles</button>
+      <Link to={token ? "/publish" : "/login"}>
+        <button className="sell">Vendre tes articles</button>
+      </Link>
     </header>
   );
 };

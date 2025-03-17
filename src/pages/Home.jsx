@@ -5,7 +5,6 @@ import Banner from "../components/Banner";
 import Offers from "../components/Offers";
 
 const Home = ({ data, search, priceDesc, values, setHomePage }) => {
-  setHomePage(true);
   return (
     <div>
       <Banner />

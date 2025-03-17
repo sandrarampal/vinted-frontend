@@ -6,10 +6,7 @@ const Products = ({ offer }) => {
   return (
     <div>
       <div className="product-pic">
-        <img
-          src={offer.product_pictures[0].secure_url}
-          alt="photo du vêtement"
-        />
+        <img src={offer.product_image.secure_url} alt="photo du vêtement" />
       </div>
       <div className="product-infos">
         <span>{offer.product_price.toFixed(2)} €</span>

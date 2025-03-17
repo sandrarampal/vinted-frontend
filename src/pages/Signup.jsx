@@ -6,12 +6,12 @@ import Cookies from "js-cookie";
 import "./Login.css";
 
 const Signup = ({ setToken, setHomePage }) => {
-  setHomePage(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [exist, setExist] = useState(false);
   const [newsletter, setNewsletter] = useState(true);
+  const [file, setFile] = useState(null);
 
   const navigate = useNavigate();
 
@@ -34,15 +34,15 @@ const Signup = ({ setToken, setHomePage }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const formData = new FormData();
+    formData.append("username", username);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("avatar", file);
     try {
       const response = await axios.post(
-        "https://lereacteur-vinted-api.herokuapp.com/user/signup",
-        {
-          username: username,
-          email: email,
-          password: password,
-          newsletter: newsletter,
-        }
+        "https://site--vinted-backend--96jcjn4jx467.code.run/user/signup",
+        formData
       );
       //   console.log(response);
       Cookies.set("userToken", response.data.token);
@@ -88,6 +88,15 @@ const Signup = ({ setToken, setHomePage }) => {
             onChange={handleNewletter}
           />
           <label> S'inscrire à notre newsletter</label>{" "}
+        </div>
+        <div>
+          <label htmlFor="">Choisissez une photo de profil</label>
+          <input
+            type="file"
+            onChange={async (event) => {
+              setFile(event.target.files[0]);
+            }}
+          />
         </div>
         <p className="message">
           En m'inscrivant je confirme avoir lu et accepté les Termes &

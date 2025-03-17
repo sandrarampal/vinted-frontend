@@ -6,18 +6,20 @@ import "./Offer.css";
 import { BiLogIn } from "react-icons/bi";
 import { Commet } from "react-loading-indicators";
 
-const Offer = ({ setHomePage }) => {
+const Offer = () => {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
   const params = useParams();
+
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        "https://lereacteur-vinted-api.herokuapp.com/v2/offers/" + params.id
+        "https://site--vinted-backend--96jcjn4jx467.code.run/offers/" +
+          params.id
       );
 
-      // console.log(response.data);
+      console.log(response.data);
       setData(response.data);
       setIsLoading(false);
     } catch (error) {
@@ -27,8 +29,6 @@ const Offer = ({ setHomePage }) => {
   useEffect(() => {
     fetchData();
   }, []);
-
-  setHomePage(false);
 
   return isLoading ? (
     <Commet
@@ -43,12 +43,6 @@ const Offer = ({ setHomePage }) => {
       <section className="container">
         <div className="product-picture">
           <img src={data.product_image.secure_url} alt="photo du vêtement" />
-          {/* <div className="carrousel">
-            {data.product_pictures &&
-              data.product_pictures.map((picture, index) => {
-                return <img src={picture.secure_url} alt="" />;
-              })}
-          </div> */}
         </div>
         <div className="product-details">
           <h3>{data.product_name}</h3>
@@ -57,7 +51,7 @@ const Offer = ({ setHomePage }) => {
             {data.product_details.map((detail, index) => {
               const key = Object.keys(detail);
               return (
-                <div>
+                <div key={index}>
                   <span>{key}</span>
                   <span>{detail[key]}</span>
                 </div>
@@ -67,10 +61,13 @@ const Offer = ({ setHomePage }) => {
           <div>
             <p className="product-description">{data.product_description}</p>
             <div className="user">
-              <img
-                src={data.owner.account.avatar.secure_url}
-                alt="avatar de l'utilisateur"
-              />
+              {data.owner.account.avatar && (
+                <img
+                  src={data.owner.account.avatar.secure_url}
+                  alt="avatar de l'utilisateur"
+                />
+              )}
+
               <p>{data.owner.account.username}</p>
             </div>
             <button>Acheter</button>

@@ -7,12 +7,13 @@ import Offer from "./pages/Offer";
 import Header from "./components/Header";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import Publish from "./pages/Publish";
 import Cookies from "js-cookie";
 import React from "react";
 import { Commet } from "react-loading-indicators";
 
 function App() {
-  const [data, setData] = useState({});
+  const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [token, setToken] = useState(Cookies.get("userToken") || null);
@@ -21,8 +22,37 @@ function App() {
   const [homePage, setHomePage] = useState(true);
 
   const fetchData = async () => {
+    let filters = "";
+    if (!priceDesc) {
+      filters += "?sort=price-asc";
+    }
+    if (priceDesc) {
+      filters += "?sort=price-desc";
+    }
+    if (search) {
+      if (filters) {
+        filters += "&title=" + search;
+      } else {
+        filters += "?title=" + search;
+      }
+    }
+    if (values[0]) {
+      if (filters) {
+        filters += "&priceMin=" + values[0];
+      } else {
+        filters += "?priceMin=" + values[0];
+      }
+    }
+    if (values[1]) {
+      if (filters) {
+        filters += "&priceMax=" + values[1];
+      } else {
+        filters += "?priceMax=" + values[1];
+      }
+    }
+
     const response = await axios.get(
-      "https://lereacteur-vinted-api.herokuapp.com/v2/offers"
+      `https://site--vinted-backend--96jcjn4jx467.code.run/offers${filters}`
     );
 
     setData(response.data);
@@ -31,7 +61,7 @@ function App() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [search, values, priceDesc]);
 
   return isLoading ? (
     <Commet
@@ -91,6 +121,7 @@ function App() {
             />
           }
         />
+        <Route path="/publish" element={<Publish token={token} />} />
         <Route
           path="/offer/:id"
           element={<Offer setHomePage={setHomePage} />}
