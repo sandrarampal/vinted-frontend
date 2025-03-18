@@ -7,6 +7,7 @@ import Offer from "./pages/Offer";
 import Header from "./components/Header";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import Payment from "./pages/Payment";
 import Publish from "./pages/Publish";
 import Cookies from "js-cookie";
 import React from "react";
@@ -82,50 +83,23 @@ function App() {
         setPriceDesc={setPriceDesc}
         values={values}
         setValues={setValues}
-        setHomePage={setHomePage}
-        homePage={homePage}
       />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <Home
-              data={data}
-              search={search}
-              priceDesc={priceDesc}
-              values={values}
-              setHomePage={setHomePage}
-              homePage={homePage}
-            />
-          }
-        />
+        <Route path="/" element={<Home data={data} token={token} />} />
         <Route
           path="/signup"
-          element={
-            <Signup
-              token={token}
-              setToken={setToken}
-              setHomePage={setHomePage}
-              homePage={homePage}
-            />
-          }
+          element={<Signup token={token} setToken={setToken} />}
         />
         <Route
           path="/login"
-          element={
-            <Login
-              token={token}
-              setToken={setToken}
-              setHomePage={setHomePage}
-              homePage={homePage}
-            />
-          }
+          element={<Login token={token} setToken={setToken} />}
         />
         <Route path="/publish" element={<Publish token={token} />} />
         <Route
           path="/offer/:id"
           element={<Offer setHomePage={setHomePage} />}
         />
+        <Route path="/payment" element={<Payment />} />
       </Routes>
     </Router>
   );

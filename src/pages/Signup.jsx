@@ -4,8 +4,9 @@ import { data, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import "./Login.css";
+import defaultAvatar from "../assets/img/default-avatar.webp";
 
-const Signup = ({ setToken, setHomePage }) => {
+const Signup = ({ setToken }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -38,7 +39,10 @@ const Signup = ({ setToken, setHomePage }) => {
     formData.append("username", username);
     formData.append("email", email);
     formData.append("password", password);
-    formData.append("avatar", file);
+    if (file) {
+      formData.append("avatar", file);
+    }
+
     try {
       const response = await axios.post(
         "https://site--vinted-backend--96jcjn4jx467.code.run/user/signup",
@@ -47,7 +51,6 @@ const Signup = ({ setToken, setHomePage }) => {
       //   console.log(response);
       Cookies.set("userToken", response.data.token);
       setToken(response.data.token);
-      setHomePage(true);
       navigate("/");
     } catch (error) {
       console.log(error.response);

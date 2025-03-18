@@ -3,7 +3,7 @@ import banner from "../assets/img/banner.jpg";
 import "./Banner.css";
 import tear from "../assets/img/tear.svg";
 
-const Banner = () => {
+const Banner = ({ token }) => {
   return (
     <div className="banner">
       <img src={banner} alt="" />
@@ -11,7 +11,9 @@ const Banner = () => {
 
       <div className="banner-panel container">
         <h2>Prêts à faire du tri dans vos placards?</h2>
-        <button>Commencez à vendre</button>
+        <Link to={token ? "/publish" : "/login"}>
+          <button>Commencez à vendre</button>
+        </Link>
       </div>
     </div>
   );

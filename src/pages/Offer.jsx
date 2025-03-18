@@ -19,7 +19,6 @@ const Offer = () => {
           params.id
       );
 
-      console.log(response.data);
       setData(response.data);
       setIsLoading(false);
     } catch (error) {
@@ -70,7 +69,12 @@ const Offer = () => {
 
               <p>{data.owner.account.username}</p>
             </div>
-            <button>Acheter</button>
+            <Link
+              to="/payment"
+              state={{ title: data.product_name, price: data.product_price }}
+            >
+              <button>Acheter</button>
+            </Link>
           </div>
         </div>
       </section>

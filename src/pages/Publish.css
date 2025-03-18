@@ -1,11 +1,102 @@
 form > div {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  background-color: white;
 }
 
-form {
+.publish-input {
+  width: 1224px;
+}
+
+.publish-input h3 {
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+
+form:not(button) {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+.publish-main {
+  background-color: #efefef;
+}
+
+.publish-input label {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  font-size: 16px;
+  align-items: flex-start;
+}
+
+.publish-input label:not(:last-child) {
+  border-bottom: solid #efefef 1px;
+  padding-bottom: 15px;
+}
+
+.add-picture {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+label > input {
+  width: 50%;
+  border: none;
+  border-bottom: #efefef solid 1px;
+  height: 30px;
+}
+
+.input-description {
+  width: 50%;
+  border: none;
+  border-bottom: #efefef solid 1px;
+  height: 100px;
+  resize: none;
+}
+
+.input-description:focus {
+  outline: none;
+}
+
+.input-description::placeholder {
+  opacity: 0.5;
+}
+
+input::placeholder {
+  opacity: 0.5;
+}
+
+input:focus {
+  outline: none;
+}
+
+.description > input {
+  height: 70px;
+}
+
+.add-button {
+  display: flex;
+  align-items: flex-end;
+  background-color: #efefef;
+  margin-bottom: 20px;
+}
+
+form button {
+  background-color: #0dafba;
+  padding: 10px 20px;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+}
+
+.check-exchange {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 16px;
+  padding: 20px 10px;
+  gap: 10px;
 }

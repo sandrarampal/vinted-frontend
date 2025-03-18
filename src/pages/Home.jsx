@@ -4,17 +4,11 @@ import "./Home.css";
 import Banner from "../components/Banner";
 import Offers from "../components/Offers";
 
-const Home = ({ data, search, priceDesc, values, setHomePage }) => {
+const Home = ({ data, token }) => {
   return (
     <div>
-      <Banner />
-      <Offers
-        data={data}
-        search={search}
-        priceDesc={priceDesc}
-        values={values}
-        setHomePage={setHomePage}
-      />
+      <Banner token={token} />
+      <Offers data={data} />
     </div>
   );
 };

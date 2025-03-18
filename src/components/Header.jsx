@@ -7,6 +7,8 @@ import Toggle from "rsuite/Toggle";
 import "rsuite/dist/rsuite.min.css";
 import LabeledTwoThumbs from "./Range-Bar";
 import * as React from "react";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 const Header = ({
   search,
@@ -16,22 +18,20 @@ const Header = ({
   setPriceDesc,
   values,
   setValues,
-  setHomePage,
-  homePage,
 }) => {
   const handleSearchChange = (event) => {
     const value = event.target.value;
     setSearch(value);
   };
+  const location = useLocation();
 
   return (
-    <header className={`container ${homePage ? "big-header" : "small-header"}`}>
-      <Link
-        to="/"
-        onClick={() => {
-          setHomePage(true);
-        }}
-      >
+    <header
+      className={`container ${
+        location.pathname === "/" ? "big-header" : "small-header"
+      }`}
+    >
+      <Link to="/">
         <div className="logo">
           <img src={logo} alt="" />
         </div>
@@ -39,11 +39,13 @@ const Header = ({
       <div className="input-div">
         <div>
           <IoMdSearch
-            className={`search-icon ${homePage ? "high-icon" : "center-icon"}`}
+            className={`search-icon ${
+              location.pathname === "/" ? "high-icon" : "center-icon"
+            }`}
           />
           <input
             className={`search-input ${
-              homePage ? "high-input" : "center-input"
+              location.pathname === "/" ? "high-input" : "center-input"
             }`}
             type="text"
             placeholder="Recherche des articles"
@@ -51,7 +53,7 @@ const Header = ({
             value={search}
           />
         </div>
-        {homePage === true && (
+        {location.pathname === "/" && (
           <div>
             <span>Trier par prix :</span>
             <Toggle
@@ -72,24 +74,10 @@ const Header = ({
       {!token ? (
         <div className="sign">
           <Link to="/signup">
-            <button
-              className="white-button"
-              onClick={() => {
-                setHomePage(false);
-              }}
-            >
-              S'inscrire
-            </button>
+            <button className="white-button">S'inscrire</button>
           </Link>
           <Link to="/login">
-            <button
-              className="white-button"
-              onClick={() => {
-                setHomePage(false);
-              }}
-            >
-              Connexion
-            </button>
+            <button className="white-button">Connexion</button>
           </Link>
         </div>
       ) : (
@@ -105,7 +93,7 @@ const Header = ({
           </button>
         </div>
       )}
-      <Link to={token ? "/publish" : "/login"}>
+      <Link to="/publish">
         <button className="sell">Vendre tes articles</button>
       </Link>
     </header>

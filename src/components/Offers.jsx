@@ -2,7 +2,7 @@ import Owner from "./Owner";
 import Products from "./Products";
 import { Link } from "react-router-dom";
 
-const Offers = ({ data, search, priceDesc, values, setHomePage }) => {
+const Offers = ({ data }) => {
   //   console.log(data);
   const newData = [...data.offers];
 
@@ -16,9 +16,6 @@ const Offers = ({ data, search, priceDesc, values, setHomePage }) => {
               <Link
                 to={`/offer/${offer._id}`}
                 style={{ textDecoration: "none" }}
-                onClick={() => {
-                  setHomePage(false);
-                }}
               >
                 <Products offer={offer} />
               </Link>
