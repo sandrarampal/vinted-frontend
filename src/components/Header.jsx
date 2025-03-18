@@ -8,7 +8,6 @@ import "rsuite/dist/rsuite.min.css";
 import LabeledTwoThumbs from "./Range-Bar";
 import * as React from "react";
 import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
 
 const Header = ({
   search,

@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-
+import "./Payment.css";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { Navigate } from "react-router-dom";
@@ -29,31 +29,35 @@ const Payment = ({ token }) => {
 
   return token ? (
     <section className="payment-main">
-      <div className="container">
+      <div className="payment">
         <h4>Résumé de la commande</h4>
         <div className="order-price">
           <div>
-            <p>Commande</p>
-            <p>{price.toFixed(2)} €</p>
+            <span>Commande</span>
+            <span>{price.toFixed(2)} €</span>
           </div>
           <div>
-            <p>Frais protection acheteurs</p>
-            <p>1.50 €</p>
+            <span>Frais protection acheteurs</span>
+            <span>1.50 €</span>
           </div>
           <div>
-            <p>Frais de port</p>
-            <p>3.00 €</p>
+            <span>Frais de port</span>
+            <span>3.00 €</span>
           </div>
         </div>
         <div className="order-summary">
           <div>
-            <p>Total</p>
-            <p>{(price + 1.5 + 3).toFixed(2)} €</p>
+            <span>Total</span>
+            <span>{(price + 1.5 + 3).toFixed(2)} €</span>
           </div>
           <p>
-            Il ne vous reste plus qu'un étape pour vous offrir {title}. Vous
-            allez payer {price.toFixed(2)} € (frais de protection et frais de
-            port inclus).
+            Il ne vous reste plus qu'un étape pour vous offrir{" "}
+            <span style={{ fontWeight: "bold" }}>{title}</span>. Vous allez
+            payer{" "}
+            <span style={{ fontWeight: "bold" }}>
+              {(price + 1.5 + 3).toFixed(2)} €
+            </span>{" "}
+            (frais de protection et frais de port inclus).
           </p>
         </div>
         <div>

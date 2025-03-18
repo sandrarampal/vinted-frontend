@@ -3,7 +3,6 @@ import Products from "./Products";
 import { Link } from "react-router-dom";
 
 const Offers = ({ data }) => {
-  //   console.log(data);
   const newData = [...data.offers];
 
   return (

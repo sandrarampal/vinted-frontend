@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./App.css";
 import axios from "axios";
@@ -20,7 +20,6 @@ function App() {
   const [token, setToken] = useState(Cookies.get("userToken") || null);
   const [priceDesc, setPriceDesc] = useState(false);
   const [values, setValues] = React.useState([5, 200]);
-  const [homePage, setHomePage] = useState(true);
 
   const fetchData = async () => {
     let filters = "";
@@ -95,10 +94,7 @@ function App() {
           element={<Login token={token} setToken={setToken} />}
         />
         <Route path="/publish" element={<Publish token={token} />} />
-        <Route
-          path="/offer/:id"
-          element={<Offer setHomePage={setHomePage} />}
-        />
+        <Route path="/offer/:id" element={<Offer />} />
         <Route path="/payment" element={<Payment token={token} />} />
       </Routes>
     </Router>

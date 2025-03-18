@@ -40,10 +40,13 @@ const CheckoutForm = ({ title, price }) => {
 
     // Demande au backend de créer l'intention de paiement, il nous renvoie le clientSecret
     try {
-      const response = await axios.post("http://localhost:3000/payment", {
-        amount: amount,
-        title: title,
-      });
+      const response = await axios.post(
+        "https://site--vinted-backend--96jcjn4jx467.code.run/payment",
+        {
+          amount: amount,
+          title: title,
+        }
+      );
       console.log(response.data);
       const clientSecret = response.data.client_secret;
       const stripeResponse = await stripe.confirmPayment({
@@ -83,7 +86,10 @@ const CheckoutForm = ({ title, price }) => {
   };
 
   return completed ? (
-    <p>Paiement effectué</p>
+    <div className="payment-done">
+      <p>Paiement effectué</p>
+      <p>Merci pour votre achat</p>
+    </div>
   ) : (
     <form onSubmit={handleSubmit}>
       <PaymentElement />

@@ -1,10 +1,9 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { data, Link } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import "./Login.css";
-import defaultAvatar from "../assets/img/default-avatar.webp";
 
 const Signup = ({ setToken }) => {
   const [username, setUsername] = useState("");
@@ -46,7 +45,7 @@ const Signup = ({ setToken }) => {
         "https://site--vinted-backend--96jcjn4jx467.code.run/user/signup",
         formData
       );
-      //   console.log(response);
+
       Cookies.set("userToken", response.data.token);
       setToken(response.data.token);
       navigate("/");

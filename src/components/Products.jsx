@@ -1,8 +1,6 @@
 import "../pages/Home.css";
 
 const Products = ({ offer }) => {
-  //   console.log(offer);
-
   return (
     <div>
       <div className="product-pic">
