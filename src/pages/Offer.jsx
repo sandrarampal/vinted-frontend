@@ -5,6 +5,7 @@ import axios from "axios";
 import "./Offer.css";
 import { BiLogIn } from "react-icons/bi";
 import { Commet } from "react-loading-indicators";
+import { Navigate } from "react-router-dom";
 
 const Offer = () => {
   const [data, setData] = useState({});

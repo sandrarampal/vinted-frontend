@@ -39,9 +39,7 @@ const Signup = ({ setToken }) => {
     formData.append("username", username);
     formData.append("email", email);
     formData.append("password", password);
-    if (file) {
-      formData.append("avatar", file);
-    }
+    formData.append("avatar", file);
 
     try {
       const response = await axios.post(

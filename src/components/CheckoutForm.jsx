@@ -39,42 +39,45 @@ const CheckoutForm = ({ title, price }) => {
     }
 
     // Demande au backend de créer l'intention de paiement, il nous renvoie le clientSecret
+    try {
+      const response = await axios.post("http://localhost:3000/payment", {
+        amount: amount,
+        title: title,
+      });
+      console.log(response.data);
+      const clientSecret = response.data.client_secret;
+      const stripeResponse = await stripe.confirmPayment({
+        // elements contient les infos et la configuration du paiement
+        elements,
+        clientSecret,
+        // Éventuelle redirection
+        confirmParams: {
+          return_url: "http://localhost:5173/",
+        },
+        // Bloque la redirections
+        redirect: "if_required",
+      });
 
-    const response = await axios.post("http://localhost:3000/payment", {
-      amount: amount,
-      title: title,
-    });
-    console.log(response.data);
+      console.log(stripeResponse);
 
-    const clientSecret = response.data.client_secret;
+      // Si une erreur a lieu pendant la confirmation
+      if (stripeResponse.error) {
+        // On la montre au client
+        setErrorMessage(stripeResponse.error.message);
+      }
 
-    console.log(clientSecret);
+      // Si on reçois un status succeeded on fais passer completed à true
+      if (stripeResponse.paymentIntent.status === "succeeded") {
+        setCompleted(true);
+      }
+    } catch (error) {
+      console.log(error.response);
+    }
+
+    // console.log(clientSecret);
 
     // Requête à Stripe pour valider le paiement
-    const stripeResponse = await stripe.confirmPayment({
-      // elements contient les infos et la configuration du paiement
-      elements,
-      clientSecret,
-      // Éventuelle redirection
-      confirmParams: {
-        return_url: "http://localhost:5173/",
-      },
-      // Bloque la redirections
-      redirect: "if_required",
-    });
 
-    console.log(stripeResponse);
-
-    // Si une erreur a lieu pendant la confirmation
-    if (stripeResponse.error) {
-      // On la montre au client
-      setErrorMessage(stripeResponse.error.message);
-    }
-
-    // Si on reçois un status succeeded on fais passer completed à true
-    if (stripeResponse.paymentIntent.status === "succeeded") {
-      setCompleted(true);
-    }
     // On a fini de charger
     setIsLoading(false);
   };

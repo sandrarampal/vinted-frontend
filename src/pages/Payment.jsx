@@ -2,18 +2,17 @@ import { useLocation } from "react-router-dom";
 
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-
+import { Navigate } from "react-router-dom";
 import CheckoutForm from "../components/CheckoutForm";
 const stripePromise = loadStripe(
   "pk_test_51R3zGIRdxc3ty1YnRUlvGuhFVRKwXWq77WJFloDbaOniV5sEaR01hDeyg83EgY4QNp2SqxC1UTuJCK1RJKLkG5VW0029YUeOk0"
 );
 
-const Payment = () => {
+const Payment = ({ token }) => {
   const location = useLocation();
   const { title, price } = location.state;
 
   const options = {
-    title: title,
     // Type de transaction
     mode: "payment",
     // Montant de la transaction
@@ -28,7 +27,7 @@ const Payment = () => {
 
   //   console.log({ title, price });
 
-  return (
+  return token ? (
     <section className="payment-main">
       <div className="container">
         <h4>Résumé de la commande</h4>
@@ -64,6 +63,11 @@ const Payment = () => {
         </div>
       </div>
     </section>
+  ) : (
+    <Navigate
+      to="/login"
+      state={{ from: "/payment", title: title, price: price }}
+    />
   );
 };
 

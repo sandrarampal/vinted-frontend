@@ -192,7 +192,7 @@ const Publish = ({ token }) => {
       </div>
     </section>
   ) : (
-    <Navigate to="/login" />
+    <Navigate to="/login" state={{ from: "/publish" }} />
   );
 };
 

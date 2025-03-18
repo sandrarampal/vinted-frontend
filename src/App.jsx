@@ -99,7 +99,7 @@ function App() {
           path="/offer/:id"
           element={<Offer setHomePage={setHomePage} />}
         />
-        <Route path="/payment" element={<Payment />} />
+        <Route path="/payment" element={<Payment token={token} />} />
       </Routes>
     </Router>
   );
